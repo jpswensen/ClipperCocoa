@@ -18,7 +18,9 @@
 //
 
 
-#define kClipperScale 100000.0f
+//#define kClipperScale 100000.0f
+//#define kClipperScale 10000000.0f
+#define kClipperScale 1000000000.0f
 #define kDefaultCleanDistance 1.415
 
 @class Paths;

@@ -41,6 +41,8 @@
 
 - (NSMutableArray*) childs
 {
+    
+    
     NSMutableArray* retval = [[NSMutableArray alloc] init];
     std::vector<ClipperLib::PolyNode*> children = _node->Childs;
     for (int i = 0 ; i < children.size() ; i++)

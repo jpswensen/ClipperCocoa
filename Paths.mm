@@ -15,6 +15,7 @@
 #import "Paths.h"
 
 #import "Path.h"
+#import "PolyTree.h"
 
 @implementation Paths
 
@@ -198,11 +199,11 @@
         {
             if (ClipperLib::Orientation(_paths[i]) != holeOrientation)
             {
-                retval += ClipperLib::Area(_paths[i]);
+                retval += ClipperLib::Area(_paths[i])/kClipperScale/kClipperScale;
             }
             else
             {
-                retval -= ClipperLib::Area(_paths[i]);
+                retval += ClipperLib::Area(_paths[i])/kClipperScale/kClipperScale;
             }
             
             
@@ -210,6 +211,14 @@
     }
     
     return retval;
+}
+
+- (void) print
+{
+    for (int i = 0 ; i < [self count] ; i++)
+    {
+        [[self pathAtIndex:i] print];
+    }
 }
 
 

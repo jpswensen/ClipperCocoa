@@ -67,5 +67,6 @@
 // This will return an NSMutableArray with and array of the three points defining the
 //- (NSMutableArray*) triangulate;
 
+- (void) print;
 
 @end

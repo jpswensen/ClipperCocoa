@@ -95,7 +95,7 @@
 
 - (float) area
 {
-    return ClipperLib::Area(_path);
+    return ClipperLib::Area(_path)/kClipperScale/kClipperScale;
 }
 
 - (Paths*) simplifyPolygon
@@ -167,6 +167,15 @@
 }
 
 #ifdef HAVE_POLY2TRI
+template <class C> void FreeClear( C & cntr ) {
+    for ( typename C::iterator it = cntr.begin();
+         it != cntr.end(); ++it ) {
+        delete * it;
+    }
+    cntr.clear();
+}
+
+
 - (Paths*) triangulate
 {
     // Use the poly2tri library to split up any concave pieces
@@ -197,6 +206,13 @@
         [retval addPath:p];
     }
     
+    // Cleanup
+    delete cdt;
+    
+    // Free points
+    FreeClear (polyline);
+
+    
     return retval;
 }
 #endif
@@ -204,7 +220,7 @@
 
 - (void) print
 {
-    printf("(");
+    printf("Orientation: %d  (", [self orientation]);
     for (int i = 0 ; i < _path.size() ; i++)
     {
         printf("(%f,%f)", (double)_path[i].X / (double)kClipperScale, (double)_path[i].Y / (double)kClipperScale);

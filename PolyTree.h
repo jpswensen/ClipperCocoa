@@ -36,9 +36,13 @@
 
 #ifdef HAVE_POLY2TRI
 - (Paths*) triangulate;
+- (Paths*) triangulateDepthFirst;
 #endif
 
 - (float) area;
+
+
+- (void) print;
 
 
 @end

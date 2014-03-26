@@ -104,6 +104,7 @@
 + (Paths*) unionPolygons:(Paths*)poly withPolygons:(Paths*)polyToUnionTo
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polyToUnionTo polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:poly polyType:ClipperLib::ptClip closed:YES];
     return [c executeWithClipType:ClipperLib::ctUnion subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -112,6 +113,7 @@
 + (Paths*) differencePolygons:(Paths*)poly fromPolygons:(Paths*)polyToDifferenceFrom
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polyToDifferenceFrom polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:poly polyType:ClipperLib::ptClip closed:YES];
     return [c executeWithClipType:ClipperLib::ctDifference subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -120,6 +122,7 @@
 + (Paths*) intersectPolygons:(Paths*)polys1 withPolygons:(Paths*)polys2
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polys1 polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:polys2 polyType:ClipperLib::ptClip closed:YES];
     return [c executeWithClipType:ClipperLib::ctIntersection subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -128,6 +131,7 @@
 + (Paths*) xorPolygons:(Paths*)polys1 withPolygons:(Paths*)polys2
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polys1 polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:polys2 polyType:ClipperLib::ptClip closed:YES];
     return [c executeWithClipType:ClipperLib::ctXor subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -137,6 +141,7 @@
 + (PolyTree*) treeUnionPolygons:(Paths*)poly withPolygons:(Paths*)polyToUnionTo
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polyToUnionTo polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:poly polyType:ClipperLib::ptClip closed:YES];
     return [c treeExecuteWithClipType:ClipperLib::ctUnion subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -145,6 +150,7 @@
 + (PolyTree*) treeDifferencePolygons:(Paths*)poly fromPolygons:(Paths*)polyToDifferenceFrom
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polyToDifferenceFrom polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:poly polyType:ClipperLib::ptClip closed:YES];
     return [c treeExecuteWithClipType:ClipperLib::ctDifference subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -153,6 +159,7 @@
 + (PolyTree*) treeIntersectPolygons:(Paths*)polys1 withPolygons:(Paths*)polys2
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polys1 polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:polys2 polyType:ClipperLib::ptClip closed:YES];
     return [c treeExecuteWithClipType:ClipperLib::ctIntersection subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
@@ -161,6 +168,7 @@
 + (PolyTree*) treeXorPolygons:(Paths*)polys1 withPolygons:(Paths*)polys2
 {
     Clipper* c = [[Clipper alloc] init];
+    c.strictlySimple = YES;
     [c addPaths:polys1 polyType:ClipperLib::ptSubject closed:YES];
     [c addPaths:polys2 polyType:ClipperLib::ptClip closed:YES];
     return [c treeExecuteWithClipType:ClipperLib::ctXor subjFillType:ClipperLib::pftEvenOdd clipFillType:ClipperLib::pftEvenOdd];
